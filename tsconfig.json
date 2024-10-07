@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES6", // or "ESNext"
+    "module": "commonjs", // or "ESNext"
+    "jsx": "react-jsx", // Use "react" for React 17 and below
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}

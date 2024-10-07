@@ -1,0 +1,56 @@
+/* Header.css */
+head, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding-top: 20px; /* Adjust this based on your header height */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: linear-gradient(#0D1b2a, #33669C);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed; /* Keeps the header at the top */
+    top: 0; /* Positions it at the very top */
+    left: 0; /* Aligns it to the left */
+    z-index: 1000; /* Ensures it stays on top of other elements */
+}
+
+.header-logo {
+    flex: 0 0 auto; /* Keep the logo size fixed */
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center; /* Center nav links */
+    flex-grow: 1; /* Allow nav links to take available space */
+    gap: 20px; /* Space between nav links */
+}
+
+.nav-button {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.nav-button:hover {
+    text-decoration: underline;
+}
+
+.header-icons {
+    display: flex;
+    gap: 15px; /* Space between icons */
+}
+
+.icon-button {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.5em; /* Increase icon size */
+}
