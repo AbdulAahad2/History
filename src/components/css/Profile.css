@@ -1,179 +1,86 @@
-body {
-    background-color: #0D1B2A; /* Deep space background */
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-}
-
-/* Particle effect for a space theme */
-body::before, body::after {
-    content: '';
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
-    border-radius: 50%;
-    animation: moveParticles 10s linear infinite;
-    opacity: 0.8;
-}
-
-body::before {
-    top: 5%;
-    left: 10%;
-}
-
-body::after {
-    bottom: 15%;
-    right: 15%;
-}
-
-/* Starry particle animation for a space vibe */
-@keyframes moveParticles {
-    0% {
-        transform: translateY(0) translateX(0) scale(1);
-    }
-    50% {
-        transform: translateY(-150px) translateX(150px) scale(1.5);
-    }
-    100% {
-        transform: translateY(0) translateX(0) scale(1);
-    }
-}
-
-/* Glowing effect for the profile container */
-.profile-container {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #A0AAB2; /* Soft muted text */
-    position: relative;
-    z-index: 1;
-}
-
-.profile-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #F0F3F5; /* Bright white-ish title */
-    text-shadow: 0 0 20px #F0F3F5;
-    margin-bottom: 20px;
-}
-
-.profile-card {
-    background: #1F2F45;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 215, 0, 0.7);
-    max-width: 600px;
-    width: 100%;
-    text-align: center;
-    position: relative;
-}
-
-.profile-image {
-    border-radius: 50%;
-    margin-bottom: 10px;
-    box-shadow: 0 0 10px #20C777, 0 0 20px #20C777; /* Green glowing effect */
-}
-
-.image-input {
-    display: block;
-    margin: 10px auto;
-}
-
-.profile-detail {
-    margin-bottom: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #A0AAB2; /* Text for form labels */
-}
-
-.profile-detail label {
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: #F0F3F5; /* Heading color */
-    text-shadow: 0 0 10px #F0F3F5;
-}
-
-.profile-detail input {
-    padding: 10px;
-    border-radius: 10px;
-    border: none;
-    width: 80%;
-    background-color: #2D4F76;
-    color: #A0AAB2;
-    font-size: 1rem;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease-in-out;
-}
-
-.profile-detail input:hover {
-    background-color: #36598A;
-}
-
-.update-button {
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    background-color: #20C777; /* Bright green */
-    border: none;
-    border-radius: 20px;
-    color: black;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-    box-shadow: 0 0 20px #20C777; /* Glowing button */
-}
-
-.update-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 30px #20C777; /* Larger glow on hover */
-}
-
-.success-message {
-    color: #20C777;
-    margin-bottom: 10px;
-    text-shadow: 0 0 10px #20C777;
-}
-
-.error-message {
-    color: #FF5C5C;
-    margin-bottom: 10px;
-    text-shadow: 0 0 10px #FF5C5C;
-}
-
-/* Modal styling */
-.modal-overlay {
+.profile-popup {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8); /* Keep the semi-transparent black for the backdrop */
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 999;
 }
 
-.modal-content {
-    background: #1F2F45;
+.profile-popup-content {
+    background-color: #0d1b2a; /* Dark background for the popup */
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 215, 0, 0.7);
-    color: #F0F3F5;
-    text-align: center;
+    border-radius: 15px; /* Slightly larger border-radius for a softer look */
+    position: relative;
+    box-shadow: none; /* Remove any shadow */
+    text-align: center; /* Center-align all content */
+    width: 90%; /* Add a max width for better responsiveness */
+    max-width: 500px; /* Limit max width */
 }
 
-/* Animation for dynamic glowing background effect */
-@keyframes glow {
-    0% {
-        box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
-    }
-    50% {
-        box-shadow: 0 0 20px rgba(255, 215, 0, 1);
-    }
-    100% {
-        box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
-    }
+.back-button {
+    align-self: flex-end;
+    background-color: transparent;
+    border: 2px solid #20C777;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transform: scale(1.1) rotate(90deg);
+}
+
+.back-button:hover {
+    background-color: rgba(32, 199, 119, 0.2);
+    transform: scale(1.1) rotate(-5deg);
+}
+.back-icon {
+    font-size: 24px;
+    color: #20C777;
+    text-shadow: 0 0 10px rgba(32, 199, 119, 0.8);
+}
+
+/* Glowing effect for the icon */
+.back-button:hover .back-icon {
+    color: #1BAE6E;
+    text-shadow: 0 0 20px rgba(32, 199, 119, 1);
+}
+
+
+.update-button {
+    margin-top: 20px;
+    background-color: #20c777; /* Button color */
+    color: #F0F2F5; /* Button text color */
+    padding: 10px 20px; /* Padding for the button */
+    border: none;
+    border-radius: 5px; /* Rounded button edges */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transition effect for hover */
+}
+
+.update-button:hover {
+    background-color: #17a363; /* Darker shade on hover */
+}
+
+.profile-title {
+    margin-bottom: 20px;
+    color: #F0F2F5; /* Title color */
+    font-size: 24px; /* Larger font size for title */
+}
+
+.profile-text {
+    color: #A0AAB2; /* Text color for the profile information */
+    font-size: 16px; /* Font size for the text */
+    line-height: 1.5; /* Improved line height for readability */
 }

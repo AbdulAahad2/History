@@ -3,7 +3,7 @@ import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import Header from './components/Header';
 import Profile from './components/Profile';
 import Dashboard from './components/Dashboard';
-import History from './components/History'; // Ensure import is correct
+import History from './components/History';
 import AuthPopup from './components/AuthPopup';
 import './index.css';
 
@@ -21,6 +21,7 @@ const App: React.FC = () => {
     const [isPopupOpen, setPopupOpen] = useState(false);
     const navigate = useNavigate(); // Initialize useNavigate hook
 
+    // Handle login
     const handleLogin = async (username: string, password: string) => {
         try {
             const response = await fetch('http://localhost:5000/api/users/login', {
@@ -39,7 +40,7 @@ const App: React.FC = () => {
             const loggedInUser = await response.json();
             setUser(loggedInUser.user);
             setPopupOpen(false); // Close the popup on successful login
-            navigate('/Dashboard'); // Redirect to the Dashboard
+            navigate('/dashboard'); // Redirect to the Dashboard
             alert('Login successful');
         } catch (error) {
             console.error('Login error:', error);
@@ -48,6 +49,7 @@ const App: React.FC = () => {
         }
     };
 
+    // Handle create account
     const handleCreateAccount = async (name: string, username: string, password: string, phone: string, email: string) => {
         try {
             const response = await fetch('http://localhost:5000/api/users/register', {
@@ -59,20 +61,19 @@ const App: React.FC = () => {
             if (!response.ok) throw new Error('Failed to register');
 
             setPopupOpen(false);
-            alert('User registered and data saved to Test.xlsx');
+            alert('User registered successfully');
         } catch (error) {
             console.error('Registration error:', error);
             alert('An error occurred during registration.');
         }
     };
 
+    // Handle profile click to navigate to Dashboard if logged in
     const handleProfileClick = () => {
         if (user) {
-            // If user is logged in, navigate to the Dashboard
-            navigate('/Dashboard');
+            navigate('/dashboard'); // If user is logged in, navigate to the Dashboard
         } else {
-            // If not logged in, open the login popup
-            setPopupOpen(true);
+            setPopupOpen(true); // If not logged in, open the login popup
         }
     };
 
@@ -80,12 +81,13 @@ const App: React.FC = () => {
         <>
             <Header onDashboardClick={handleProfileClick} />
             <Routes>
-                <Route path="/Dashboard" element={user ? <Dashboard user={user} /> : <Navigate to="/" />} />
-                <Route path="/Profile" element={user ? <Profile user={user} /> : <Navigate to="/" />} />
-                <Route path="/History" element={user ? <History username={user.username} /> : <Navigate to="/" />} />
-                <Route path="/" element={<h1>Welcome! Please log in.</h1>} />
+                <Route path="/" element={<div>Welcome to the App! Please log in or create an account.</div>} /> {/* Welcome Page */}
+                <Route path="/dashboard" element={user ? <Dashboard user={user} /> : <Navigate to="/" />} />
+                <Route path="/profile" element={user ? <Profile user={user} onClose={() => {}} /> : <Navigate to="/" />} />
+                <Route path="/history" element={user ? <History type={'asked'} onClose={() => {}} /> : <Navigate to="/" />} />
             </Routes>
 
+            {/* Auth Popup */}
             {isPopupOpen && (
                 <AuthPopup
                     isOpen={isPopupOpen}

@@ -2,8 +2,8 @@
 body {
   margin: 0;
   padding: 0;
-  width: 102vw; /* Full viewport width */
-  height: 60vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
   background-color: #0D1D2A; /* Consistent space theme background */
   overflow-x: hidden; /* Prevent horizontal scrolling if it exceeds viewport */
 }
@@ -19,10 +19,22 @@ body {
   border-radius: 15px;
   position: relative;
   z-index: 1;
+  animation: fadeIn 0.5s; /* Fade-in effect */
+}
+
+/* Fade-in animation for smooth appearance */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
 }
 
 /* Animated particles in background for a space theme */
-body::before, body::after {
+body::before,
+body::after {
   content: '';
   position: absolute;
   width: 200px;
@@ -47,62 +59,64 @@ body::after {
 /* Starry particle animation for a space vibe */
 @keyframes moveParticles {
   0% {
-    transform: translateY(0) translateX(0) scale(1);
+      transform: translateY(0) translateX(0) scale(1);
   }
   50% {
-    transform: translateY(-150px) translateX(150px) scale(1.5);
+      transform: translateY(-150px) translateX(150px) scale(1.5);
   }
   100% {
-    transform: translateY(0) translateX(0) scale(1);
+      transform: translateY(0) translateX(0) scale(1);
   }
 }
 
 .menu-toggle {
   position: fixed;
-  top: 50px;
-  right: 10px;
+  top: 30px;
+  right: 40px;
   z-index: 1000; /* Ensure it stays above other elements */
 }
 
+/* Header with glowing effect */
 .header {
   position: relative;
   padding: 20px;
-  background-color: #4CAF50;
+  background-color: #4CAF50; /* Header background */
   z-index: 999;
   border-bottom: 2px solid #20C997;
   text-shadow: 0 0 10px #F0F3F5;
 }
 
+/* Toggle button with glowing effect */
 .toggle-button {
   font-size: 24px;
   background-color: #20C997; /* Neon-like green */
   color: #0D1B2A;
+  margin-right: auto;
   border: none;
   padding: 10px 15px;
   cursor: pointer;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  box-shadow: 0 0 15px #20C997;
+  box-shadow: 0 0 15px #20C997; /* Glow effect */
 }
 
 .toggle-button:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 20px #20C997;
+  box-shadow: 0 0 20px #20C997; /* Glow effect on hover */
 }
 
 .interactions {
   display: flex;
+  margin-right: -40px;
   flex-direction: column;
-  position: absolute;
   top: 100px;
-  right: 70px;
-  background-color: #0D1D2A;
+  background-color: #0D1D2A; /* Background for interactions */
   padding: 10px;
   border-radius: 5px;
-  box-shadow: 0 0 15px #20C997;
+  box-shadow: 0 0 15px #20C997; /* Glow effect */
 }
 
 .interaction-button {
-  background-color: #20C997;
+  background-color: #20C997; /* Neon-like green */
   color: #F0F3F5;
   border: none;
   padding: 8px 12px;
@@ -114,7 +128,7 @@ body::after {
 
 .interaction-button:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 20px #20C997;
+  box-shadow: 0 0 20px #20C997; /* Glow effect on hover */
 }
 
 .top-section {
@@ -132,47 +146,47 @@ body::after {
   flex-direction: column;
   align-items: center;
   width: 30%;
-  background-color: #0D1D2A;
+  background-color: #0D1D2A; /* Profile background */
   padding: 15px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(2, 201, 153, 0.7);
+  box-shadow: 0 4px 8px rgba(2, 201, 153, 0.7); /* Glow effect */
   transition: transform 0.3s ease-in-out;
 }
 
 .profile-section:hover {
   transform: translateY(-5px);
-  box-shadow: 0 0 20px #20C997;
+  box-shadow: 0 0 20px #20C997; /* Glow effect on hover */
 }
 
 .profile-pic {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  box-shadow: 0 0 10px #20C997, 0 0 15px #20C997;
+  box-shadow: 0 0 10px #20C997, 0 0 15px #20C997; /* Glow effect */
 }
 
 .user-name {
   font-size: 24px;
   font-weight: bold;
   margin-top: 10px;
-  color: #F0F3F5;
-  text-shadow: 0 0 10px #F0F3F5;
+  color: #F0F3F5; /* User name color */
+  text-shadow: 0 0 10px #F0F3F5; /* Glow effect */
 }
 
 .user-email,
 .user-phone {
   font-size: 14px;
-  color: #A0AAB2;
+  color: #A0AAB2; /* Muted color */
 }
 
 .amount-earned-milestone-section {
   display: flex;
   justify-content: space-between;
   width: 100%; /* Full width for this section */
-  background-color: #0D1D2A;
+  background-color: #0D1D2A; /* Section background */
   padding: 15px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(2, 201, 153, 0.7);
+  box-shadow: 0 4px 8px rgba(2, 201, 153, 0.7); /* Glow effect */
 }
 
 .amount-earned-section ul {
@@ -182,7 +196,7 @@ body::after {
 
 .amount-earned-section li {
   margin-bottom: 5px;
-  color: #A0AAB2;
+  color: #A0AAB2; /* Muted color */
 }
 
 .milestone-section {
@@ -198,13 +212,13 @@ body::after {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0 15px #4CAF50;
+  box-shadow: 0 0 15px #4CAF50; /* Glow effect */
 }
 
 .progress-value {
   font-size: 24px;
   font-weight: bold;
-  color: #F0F3F5;
+  color: #F0F3F5; /* Progress value color */
 }
 
 .graph-history-container {
@@ -219,12 +233,12 @@ body::after {
   flex: 0 0 30%;
   padding: 10px;
   border-radius: 8px;
-  background-color: #0D1D2A;
-  box-shadow: 0 4px 8px rgba(2, 201, 153, 0.7);
+  background-color: #0D1D2A; /* Section background */
+  box-shadow: 0 4px 8px rgba(2, 201, 153, 0.7); /* Glow effect */
 }
 
 .history-section p {
-  color: #A0AAB2;
+  color: #A0AAB2; /* Muted color */
 }
 
 .filter-options {
@@ -237,12 +251,12 @@ body::after {
   padding: 20px;
   flex: 1; /* Let graph-section take the remaining space */
   border-radius: 8px;
-  background-color: #0D1D2A;
-  box-shadow: 0 4px 8px rgba(2, 201, 153, 0.7);
+  background-color: #0D1D2A; /* Section background */
+  box-shadow: 0 4px 8px rgba(2, 201, 153, 0.7); /* Glow effect */
   text-align: center;
 }
 
 .graph-section h3 {
-  color: #F0F3F5;
-  text-shadow: 0 0 10px #F0F3F5;
+  color: #F0F3F5; /* Graph title color */
+  text-shadow: 0 0 10px #F0F3F5; /* Glow effect */
 }
